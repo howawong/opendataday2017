@@ -19,9 +19,15 @@ for d in rows:
     d['title'] = d['title'].replace(':', ':')
     d['title'] = d['title'].replace('(', '(')
     d['title'] = d['title'].replace('）', ')')
-
-    print(d['date'] + "," +d['title'])
-    #print re.match(r'(.*)\(*.\)', d['title']).groups()
+    d['title'] = d['title'].replace(')', ')')
+    d['title'] = d['title'].replace('(', '(')
+    m = re.match(r'(.*)\((.*)\)', d['title'])
+    if m == None:
+        groups = re.match(r'(.*)(\d\d:\d\d.*)\)', d['title']).groups()
+    else:
+        groups = m.groups()
+    if len(groups) != 2:
+        print groups
     #message = message.replace("(","").replace(")","")
     #roads, t, status = match.groups()
     #print category, roads, status, d['date']
